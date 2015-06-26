@@ -1,4 +1,4 @@
-let &runtimepath="~/.vim,~/.dotfiles/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim73,/usr/share/vim/vimfiles/after,~/.vim/after"
+let &runtimepath.=',~/.dotfiles/vim'
 
 " Pathogen setup
 call pathogen#infect()
