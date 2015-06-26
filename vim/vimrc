@@ -1,0 +1,53 @@
+let &runtimepath="~/.vim,~/.dotfiles/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim73,/usr/share/vim/vimfiles/after,~/.vim/after"
+
+" Pathogen setup
+call pathogen#infect()
+
+set t_Co=256
+syntax on
+color kalahari
+
+filetype plugin indent on
+
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+endfunction
+
+map <TAB> >gv
+map <S-TAB> <gv
+map <Enter> i<Enter>
+
+set laststatus=2
+set number
+set cursorline 
+set ruler
+set mouse=a
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases 
+set smartcase
+
+set nobackup
+set nowb
+set noswapfile
+
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set encoding=utf-8
+
+let g:airline_left_sep=''
+let g:airline_right_sep=''

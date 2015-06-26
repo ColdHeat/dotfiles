@@ -1,0 +1,52 @@
+parse_git_dirty () {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+}
+parse_git_branch () {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+}
+ 
+#PS1="\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\$ \[$RESET\]"
+
+#export PS1="\h \e[30;1m\w\e[0m\n\$ "
+export PS1="\e[30;1m\w\e[0m\n\$ "
+
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export CLICOLOR=1
+export LSCOLORS="Exfxcxdxbxegedabagacad"
+export EDITOR="vim"
+export ANSIBLE_HOSTS="/usr/local/etc/ansible/hosts"
+
+alias ..='cd ..'
+alias c='clear'
+alias ~="cd ~"
+alias passgen="python -c \"import random, string; print ''.join(random.choice(string.letters + string.digits) for _ in range(20))\""
+alias wget='wget --content-disposition'
+alias ls="ls -CF"
+alias l="ls -CF"
+alias py="python"
+alias ip="curl -w '\n' http://canihazip.com/s"
+alias dir="ls -lAhGp"
+alias host="python -m SimpleHTTPServer 8080"
+
+#   extract:  Extract most known archives with one command
+#   ---------------------------------------------------------
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}

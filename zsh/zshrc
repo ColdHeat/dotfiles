@@ -1,0 +1,41 @@
+fpath=( "$HOME/.dotfiles/zsh/.zfunctions" $fpath )
+zstyle ':completion:*' menu select
+
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey '^[[Z' reverse-menu-complete
+
+autoload -U promptinit && promptinit
+autoload -U compinit && compinit
+setopt correct_all
+setopt menu_complete
+prompt pure
+
+autoload colors;
+colors;
+
+export PATH=/usr/local/bin:/usr/local/sbin:/Users/kchung/.gem/ruby/2.0.0/bin:$PATH
+export PYTHONPATH=/Users/kchung/Repositories/utils
+export CLICOLOR=1
+export LSCOLORS="Exfxcxdxbxegedabagacad"
+export EDITOR="vim"
+export ANSIBLE_HOSTS="/usr/local/etc/ansible/hosts"
+export LC_ALL="en_US.UTF-8"
+export GREP_OPTIONS='--color=auto'
+
+alias ..='cd ..'
+alias c='clear'
+alias ~="cd ~"
+alias passgen="python -c \"import random, string; print ''.join(random.choice(string.letters + string.digits) for _ in range(20))\""
+alias wget='wget --content-disposition'
+alias ls="ls -CF"
+alias l="ls -CF"
+alias py="python"
+alias ipy="ipython"
+alias pythong="python"
+alias ip="curl -w '\n' http://canihazip.com/s"
+alias dir="ls -lAhGp"
+alias host="python -m SimpleHTTPServer 8080"
+alias strings="strings -a"
+alias v="vim"
+alias ccat="pygmentize -g"
