@@ -27,6 +27,9 @@ alias py="python"
 alias ip="curl -w '\n' http://canihazip.com/s"
 alias dir="ls -lAhGp"
 alias host="python -m SimpleHTTPServer 8080"
+if type "ipython" > /dev/null; then
+    alias python="ipython"
+fi
 
 #   extract:  Extract most known archives with one command
 #   ---------------------------------------------------------

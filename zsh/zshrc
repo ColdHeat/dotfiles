@@ -14,8 +14,8 @@ prompt pure
 autoload colors;
 colors;
 
-export PATH=/usr/local/bin:/usr/local/sbin:/Users/kchung/.gem/ruby/2.0.0/bin:$PATH
-export PYTHONPATH=/Users/kchung/Repositories/utils
+export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":$PATH
+export PYTHONPATH="/Users/kchung/Repositories/utils"
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
@@ -39,3 +39,6 @@ alias host="python -m SimpleHTTPServer 8080"
 alias strings="strings -a"
 alias v="vim"
 alias ccat="pygmentize -g"
+if type "ipython" > /dev/null; then
+    alias python="ipython"
+fi
