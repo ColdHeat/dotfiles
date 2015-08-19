@@ -23,8 +23,8 @@ alias c='clear'
 alias ~="cd ~"
 alias passgen="python -c \"import random, string; print ''.join(random.choice(string.letters + string.digits) for _ in range(20))\""
 alias wget='wget --content-disposition'
-alias ls="ls -CF"
-alias l="ls -CF"
+alias ls="ls -CF --color=auto"
+alias l="ls -CF --color=auto"
 alias ipy="ipython"
 alias ip="curl -w '\n' http://canihazip.com/s"
 alias dir="ls -lAhGp"
