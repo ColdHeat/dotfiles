@@ -15,7 +15,8 @@ autoload colors;
 colors;
 
 export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":$PATH
-export PYTHONPATH="/Users/kchung/Repositories/utils"
+export PYTHONPATH=~/Repositories/utils/
+export PYTHONSTARTUP=~/Repositories/utils/__init__.py
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
@@ -30,9 +31,7 @@ alias passgen="python -c \"import random, string; print ''.join(random.choice(st
 alias wget='wget --content-disposition'
 alias ls="ls -CF"
 alias l="ls -CF"
-alias py="python"
 alias ipy="ipython"
-alias pythong="python"
 alias ip="curl -w '\n' http://canihazip.com/s"
 alias dir="ls -lAhGp"
 alias host="python -m SimpleHTTPServer 8080"
@@ -40,5 +39,5 @@ alias strings="strings -a"
 alias v="vim"
 alias ccat="pygmentize -g"
 if type "ipython" > /dev/null; then
-    alias python="ipython"
+    alias py="ipython"
 fi

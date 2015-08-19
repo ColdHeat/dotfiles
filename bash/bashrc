@@ -4,13 +4,15 @@ parse_git_dirty () {
 parse_git_branch () {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
- 
+
 #PS1="\[$BLUE\]\w\[$BASE0\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$YELLOW\]\$(parse_git_branch)\[$BASE0\]\n\$ \[$RESET\]"
 
 #export PS1="\h \e[30;1m\w\e[0m\n\$ "
 export PS1="\e[30;1m\w\e[0m\n\$ "
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PYTHONPATH=~/Repositories/utils/
+export PYTHONSTARTUP=~/Repositories/utils/__init__.py
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
@@ -23,12 +25,12 @@ alias passgen="python -c \"import random, string; print ''.join(random.choice(st
 alias wget='wget --content-disposition'
 alias ls="ls -CF"
 alias l="ls -CF"
-alias py="python"
+alias ipy="ipython"
 alias ip="curl -w '\n' http://canihazip.com/s"
 alias dir="ls -lAhGp"
 alias host="python -m SimpleHTTPServer 8080"
 if type "ipython" > /dev/null; then
-    alias python="ipython"
+    alias py="ipython"
 fi
 
 #   extract:  Extract most known archives with one command
