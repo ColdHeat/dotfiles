@@ -15,8 +15,6 @@ autoload colors;
 colors;
 
 export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":$PATH
-export PYTHONPATH=~/Repositories/utils/
-export PYTHONSTARTUP=~/Repositories/utils/__init__.py
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
