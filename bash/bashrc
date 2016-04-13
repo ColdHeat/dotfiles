@@ -11,8 +11,6 @@ parse_git_branch () {
 export PS1="\e[30;1m\w\e[0m\n\$ "
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PYTHONPATH=~/Repositories/utils/
-export PYTHONSTARTUP=~/Repositories/utils/__init__.py
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
