@@ -9,12 +9,13 @@ autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 setopt correct_all
 setopt menu_complete
+setopt interactive_comments
 prompt pure
 
 autoload colors;
 colors;
 
-export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":$PATH
+export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":"/usr/local/heroku/bin":$PATH
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
@@ -32,10 +33,15 @@ alias l="ls -CF"
 alias ipy="ipython"
 alias ip="curl http://checkip.amazonaws.com/"
 alias dir="ls -lAhGp"
-alias host="python -m SimpleHTTPServer 8080"
+alias serve="python -m SimpleHTTPServer 8080"
 alias strings="strings -a"
 alias v="vim"
 alias ccat="pygmentize -g"
+alias binja='open -a "Binary Ninja.app"'
 if type "ipython" > /dev/null; then
     alias py="ipython"
 fi
+alias tmpsql='docker run --rm --name=mysql --env="MYSQL_ROOT_PASSWORD=password" -p127.0.0.1:3306:3306 mysql'
+
+eval "$(ssh-agent -s)" > /dev/null;
+source $(which virtualenvwrapper_lazy.sh);
