@@ -42,6 +42,19 @@ if type "ipython" > /dev/null; then
     alias py="ipython"
 fi
 alias tmpsql='docker run --rm --name=mysql --env="MYSQL_ROOT_PASSWORD=password" -p127.0.0.1:3306:3306 mysql'
+alias tmps3='docker run --rm -p 9000:9000 minio/minio server /data'
+alias ssh_actual='command ssh'
 
 eval "$(ssh-agent -s)" > /dev/null;
 source $(which virtualenvwrapper_lazy.sh);
+
+ssh() {
+    if ! [ -x "$(command -v mosh)" ]; then
+        echo "mosh client not found."
+        command ssh "$@"
+    else
+        echo "Found mosh client."
+        command mosh "$@"
+        [[ $? -ne 0 ]] && (echo "mosh server not found" ; command ssh "$@")
+    fi
+}
