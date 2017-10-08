@@ -42,7 +42,8 @@ if type "ipython" > /dev/null; then
     alias py="ipython"
 fi
 alias tmpsql='docker run --rm --name=mysql --env="MYSQL_ROOT_PASSWORD=password" -p127.0.0.1:3306:3306 mysql'
-alias tmps3='docker run --rm -p 9000:9000 minio/minio server /data'
+alias tmps3='docker run -e "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE" -e "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" --rm -p 9000:9000 minio/minio server /data'
+alias tmppg='docker run --rm --name=pgsql --env="POSTGRES_PASSWORD=password" -p127.0.0.1:5432:5432 pgsql'
 alias ssh_actual='command ssh'
 
 eval "$(ssh-agent -s)" > /dev/null;
