@@ -16,6 +16,7 @@ autoload colors;
 colors;
 
 export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":"/usr/local/heroku/bin":$PATH
+export PATH="/usr/local/opt/python/libexec/bin:$PATH" # wtf brew
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
