@@ -4,6 +4,7 @@ zstyle ':completion:*' menu select
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey '^[[Z' reverse-menu-complete
+bindkey "^[[3~" delete-char
 
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
