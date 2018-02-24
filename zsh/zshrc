@@ -25,9 +25,7 @@ export ANSIBLE_HOSTS="/usr/local/etc/ansible/hosts"
 export LC_ALL="en_US.UTF-8"
 export GREP_OPTIONS='--color=auto'
 
-alias ..='cd ..'
 alias c='clear'
-alias ~="cd ~"
 alias passgen="python -c \"import random, string; print ''.join(random.choice(string.letters + string.digits) for _ in range(20))\""
 alias wget='wget --content-disposition'
 alias ls="ls -CF"
@@ -40,6 +38,7 @@ alias strings="strings -a"
 alias v="vim"
 alias ccat="pygmentize -g"
 alias binja='open -a "Binary Ninja.app"'
+alias zipcrypt=zipcloak
 if type "ipython" > /dev/null; then
     alias py="ipython"
 fi
@@ -55,6 +54,8 @@ alias ssh_actual='command ssh'
 eval `ssh-agent` > /dev/null;
 source $(which virtualenvwrapper_lazy.sh);
 
+up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
+
 ssh() {
     if ! [ -x "$(command -v mosh)" ]; then
         echo "mosh client not found."
@@ -64,4 +65,22 @@ ssh() {
         command mosh "$@"
         [[ $? -ne 0 ]] && (echo "mosh server not found" ; command ssh "$@")
     fi
+}
+
+zipfix() {
+    # Remove commit hashes from git archives
+    local ORIG="$@"
+    local FOLDER="$(echo $ORIG | awk '{split($0,a,"."); print a[1]}')"
+    local TARGET=`echo $ORIG | awk -F'-' '{$(NF--)=""; OFS="-"; print}'`
+    local TARGET=${TARGET%?}
+    local TARGET_FOLDER=$TARGET
+    TARGET=$TARGET.zip
+    echo $TARGET
+    echo $TARGET_FOLDER
+    echo $FOLDER
+    echo $ORIG
+    unzip $ORIG
+    mv $FOLDER $TARGET_FOLDER
+    zip -r $TARGET $TARGET_FOLDER
+    rm -rf $TARGET_FOLDER
 }
