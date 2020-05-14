@@ -1,3 +1,6 @@
+export DIRENV_BASH=/bin/bash
+eval "$(direnv hook $SHELL)"
+
 fpath=( "$HOME/.dotfiles/zsh/.zfunctions" $fpath )
 zstyle ':completion:*' menu select
 
@@ -17,7 +20,6 @@ autoload colors;
 colors;
 
 export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":"/usr/local/heroku/bin":$PATH
-export PATH="/usr/local/opt/python/libexec/bin:$PATH" # wtf brew
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
@@ -25,7 +27,7 @@ export LC_ALL="en_US.UTF-8"
 export GREP_OPTIONS='--color=auto'
 
 alias c='clear'
-alias passgen="python -c \"import random, string; print ''.join(random.choice(string.letters + string.digits) for _ in range(20))\""
+alias passgen="python -c \"import random, string; print(''.join(random.choice(string.letters + string.digits) for _ in range(20)))\""
 alias wget='wget --content-disposition'
 alias ls="ls -CF"
 alias l="ls -CF"
@@ -44,11 +46,13 @@ fi
 if type "nvim" > /dev/null; then
     alias vim="nvim"
 fi
-alias tmpsql='docker run --rm --name=mysql --env="MYSQL_ROOT_PASSWORD=password" -p127.0.0.1:3306:3306 mysql'
+alias tmpsql='docker run --rm --name=mysql --env="MYSQL_ROOT_PASSWORD=password" -p127.0.0.1:3306:3306 mysql:5.7'
 alias tmps3='docker run -e "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE" -e "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" --rm -p 9000:9000 minio/minio server /data'
-alias tmppg='docker run --rm --name=pgsql --env="POSTGRES_PASSWORD=password" -p127.0.0.1:5432:5432 pgsql'
+alias tmppg='docker run --rm --name=postgres --env="POSTGRES_PASSWORD=password" -p127.0.0.1:5432:5432 postgres'
 alias tmpredis='docker run -p 127.0.0.1:6379:6379 --rm --name redis redis'
+alias tmpmail='docker run --name=inbucket --rm -p 9090:9000 -p 2500:2500 -p 1100:1100 jhillyerd/inbucket:stable'
 alias ssh_actual='command ssh'
+alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
 
 eval `ssh-agent` > /dev/null;
 source $(which virtualenvwrapper_lazy.sh);
