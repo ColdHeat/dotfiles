@@ -51,3 +51,7 @@ set encoding=utf-8
 
 let g:airline_left_sep=''
 let g:airline_right_sep=''
+
+if &diff
+    colorscheme github
+endif
