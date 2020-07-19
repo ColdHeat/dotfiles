@@ -53,7 +53,7 @@ alias tmpredis='docker run -p 127.0.0.1:6379:6379 --rm --name redis redis'
 alias tmpmail='docker run --name=inbucket --rm -p 9090:9000 -p 2500:2500 -p 1100:1100 jhillyerd/inbucket:stable'
 alias ssh_actual='command ssh'
 alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
-alias docker-stop-all='docker stop $(docker ps -aq)'
+alias docker-stop-all='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}")'
 
 eval `ssh-agent` > /dev/null;
 source $(which virtualenvwrapper_lazy.sh);
