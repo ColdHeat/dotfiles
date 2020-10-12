@@ -27,7 +27,7 @@ export LC_ALL="en_US.UTF-8"
 export GREP_OPTIONS='--color=auto'
 
 alias c='clear'
-alias passgen="python -c \"import random, string; print(''.join(random.choice(string.letters + string.digits) for _ in range(20)))\""
+alias passgen="python3 -c \"import random, string; print(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20)))\""
 alias wget='wget --content-disposition'
 alias ls="ls -CF"
 alias l="ls -CF"
@@ -60,16 +60,16 @@ source $(which virtualenvwrapper_lazy.sh);
 
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
 
-# ssh() {
-#     if ! [ -x "$(command -v mosh)" ]; then
-#         echo "mosh client not found."
-#         command ssh "$@"
-#     else
-#         echo "Found mosh client."
-#         command mosh "$@"
-#         [[ $? -ne 0 ]] && (echo "mosh server not found" ; command ssh "$@")
-#     fi
-# }
+ssh() {
+    if ! [ -x "$(command -v mosh)" ]; then
+        echo "mosh client not found."
+        command ssh "$@"
+    else
+        echo "Found mosh client."
+        command mosh "$@"
+        [[ $? -ne 0 ]] && (echo "mosh server not found" ; command ssh "$@")
+    fi
+}
 
 zipfix() {
     # Remove commit hashes from git archives
