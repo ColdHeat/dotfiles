@@ -54,6 +54,7 @@ alias tmpmail='docker run --name=inbucket --rm -p 9090:9000 -p 2500:2500 -p 1100
 alias ssh_actual='command ssh'
 alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
 alias docker-stop-all='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}")'
+alias docker-nuke='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}"); docker rm $(docker ps -aq)'
 alias ubuntu='docker run --rm -it -v `pwd`:/home ubuntu:20.04 bash'
 
 eval `ssh-agent` > /dev/null;
