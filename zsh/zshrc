@@ -19,12 +19,13 @@ prompt pure
 autoload colors;
 colors;
 
-export PATH="/usr/local/bin":"/usr/local/sbin":"/Users/$USER/.gem/ruby/2.0.0/bin":"/usr/local/heroku/bin":$PATH
+export PATH="/usr/local/bin":"/usr/local/sbin":$PATH
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
 export LC_ALL="en_US.UTF-8"
 export GREP_OPTIONS='--color=auto'
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 alias c='clear'
 alias passgen="python3 -c \"import random, string; print(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20)))\""
@@ -55,9 +56,13 @@ alias ssh_actual='command ssh'
 alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
 alias docker-stop-all='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}")'
 alias docker-nuke='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}"); docker rm $(docker ps -aq)'
-alias ubuntu='docker run --rm -it -v `pwd`:/home ubuntu:20.04 bash'
+alias ubuntu='docker run --rm -it -v "`pwd`":/home ubuntu:20.04 bash'
+alias dcb='docker-compose build'
+alias dcbu='docker-compose build && docker-compose up'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down -v'
 
-eval `ssh-agent` > /dev/null;
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
 source $(which virtualenvwrapper_lazy.sh);
 
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
