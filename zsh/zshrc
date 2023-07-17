@@ -27,6 +27,11 @@ export LC_ALL="en_US.UTF-8"
 export GREP_OPTIONS='--color=auto'
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+# pyenv init
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 alias c='clear'
 alias passgen="python3 -c \"import random, string; print(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20)))\""
 alias wget='wget --content-disposition'
@@ -37,23 +42,20 @@ alias ip="curl http://checkip.amazonaws.com/"
 alias dir="ls -lAhGp"
 alias serve="python3 -m http.server 8080"
 alias strings="strings -a"
-alias v="vim"
-alias ccat="pygmentize -g"
-alias binja='open -a "Binary Ninja.app"'
-alias zipcrypt=zipcloak
+
 if type "ipython" > /dev/null; then
     alias py="ipython"
 fi
 if type "nvim" > /dev/null; then
     alias vim="nvim"
 fi
+
+# docker tricks
 alias tmpsql='docker run --rm --name=mysql --env="MYSQL_ROOT_PASSWORD=password" -p127.0.0.1:3306:3306 mysql:5.7'
 alias tmps3='docker run -e "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE" -e "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" --rm -p 9000:9000 minio/minio server /data'
 alias tmppg='docker run --rm --name=postgres --env="POSTGRES_PASSWORD=password" -p127.0.0.1:5432:5432 postgres'
 alias tmpredis='docker run -p 127.0.0.1:6379:6379 --rm --name redis redis'
 alias tmpmail='docker run --name=inbucket --rm -p 9090:9000 -p 2500:2500 -p 1100:1100 inbucket/inbucket:stable'
-alias ssh_actual='command ssh'
-alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
 alias docker-stop-all='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}")'
 alias docker-nuke='docker stop $(docker ps -aq); docker service rm $(docker service ls --format="{{.Name}}"); docker rm $(docker ps -aq)'
 alias ubuntu='docker run --rm -it -v "`pwd`":/home ubuntu:20.04 bash'
@@ -62,10 +64,14 @@ alias dcbu='docker-compose build && docker-compose up'
 alias dcu='docker-compose up'
 alias dcd='docker-compose down -v'
 
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python3"
-source $(which virtualenvwrapper_lazy.sh);
+alias ssh_actual='command ssh'
+alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
 
-up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
+# pseudo-virtualenvwrapper with pyenv
+alias lsvirtualenv="pyenv virtualenvs"
+alias mkvirtualenv="pyenv virtualenv"
+alias workon="pyenv activate"
+alias deactivate="pyenv deactivate"
 
 ssh() {
     if ! [ -x "$(command -v mosh)" ]; then
