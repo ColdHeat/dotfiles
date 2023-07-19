@@ -70,6 +70,7 @@ alias remove_dsstore='find . -name ".DS_Store" -type f -delete'
 # pseudo-virtualenvwrapper with pyenv
 alias lsvirtualenv="pyenv virtualenvs"
 alias mkvirtualenv="pyenv virtualenv"
+alias rmvirtualenv="pyenv virtualenv-delete"
 alias workon="pyenv activate"
 alias deactivate="pyenv deactivate"
 
