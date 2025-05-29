@@ -19,7 +19,7 @@ prompt pure
 autoload colors;
 colors;
 
-export PATH="/usr/local/bin":"/usr/local/sbin":$PATH
+export PATH="/usr/local/bin":"/usr/local/sbin":"$HOME/Scripts":$PATH
 export CLICOLOR=1
 export LSCOLORS="Exfxcxdxbxegedabagacad"
 export EDITOR="vim"
@@ -42,7 +42,7 @@ alias wget='wget --content-disposition'
 alias ls="ls -CF"
 alias l="ls -CF"
 alias ipy="ipython"
-alias ip="curl http://checkip.amazonaws.com/"
+alias ip="curl https://checkip.amazonaws.com/"
 alias dir="ls -lAhGp"
 alias serve="python3 -m http.server 8080"
 alias strings="strings -a"
